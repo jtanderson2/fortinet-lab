@@ -16,7 +16,7 @@ This document outlines the home lab setup I use for learning, testing, and valid
 
 ### Hardware
 - **2 × FortiGate 60E**
-  - Currently running FortiOS 7.4
+  - Running FortiOS 7.4
 - **1 × Dell PowerEdge T130**
   - Intel Xeon E3-1200 (Quad Core)
   - 64 GB RAM
@@ -24,14 +24,16 @@ This document outlines the home lab setup I use for learning, testing, and valid
 
 ### Virtual Machines
 
-- **FortiManager** - Free trial license
-- **FortiAnalyzer** - Free trial license
-- **EMS Server** - Free Trial
+- **FortiManager** - Free trial license (limited to 3 Devices/VDOMs)
+- **FortiAnalyzer** - Free trial license (limited to 3 Devices/VDOMs)
+- **EMS Server** - Free Trial (limited to 3 endpoints)
 - **VyOS Stream** - Virtual Router
 - **Windows Server 2016** – Domain Controller + PKI
 - **Windows Server 2016** – IIS Web Server
 - **Windows 10** – Domain-joined workstation
 - **Linux Mint VMs** – for traffic generation and testing
+
+> NOTE: There is also a FortiGate free trial on the ESX host. It's limited to 3 interfaces and weak ciphers, but still useful in some scenarios. The biggest challenge I've found is not being able to add it to FortiManager due to the weak ciphers.
 
 ## Physical Topology
 
