@@ -52,6 +52,22 @@ The direct WAN-to-WAN connections between the two FortiGates are used for ad hoc
 
 ![](media/fortinet-lab-logical.png)
 
+### Lab Management
+Every device, physical or virtual, has an IP address on my home LAN (192.168.0.0/24) which ensures I always have full management reachability to all components (for the Linux VMs, I just add a 2nd VNIC for this purpose). 
+
+The FortiManager, FortiAnalzer and Domain Controller can communicate directly with the required lab components over the management LAN.
+
+The home LAN also provides outbound internet connectivity from the lab via my home fibre where required.
+
+### Lab Management
+
+All physical and virtual devices in the lab are connected to my home LAN (`192.168.0.0/24`), ensuring consistent management access across the environment. For Linux-based VMs, a secondary vNIC is added to connect them to the management LAN specifically for this purpose.
+
+Core services such as FortiManager, FortiAnalyzer, and the Windows Domain Controller communicate with lab components over this management network, enabling centralized logging, configuration, and directory integration.
+
+Outbound internet access for lab systems is also routed via the home LAN and upstream fibre connection.
+
+
 
 
 
