@@ -11,6 +11,7 @@
 ## Introduction
 This document outlines the home lab setup I use for learning, testing, and validating Fortinet products and network architectures. It's built with a focus on Fortinet SD-WAN, ZTNA and central management via FortiManager/FortiAnalyzer, but is flexible enough for broader security and networking scenarios.
 
+The lab environment is small and compact, but does enable a surprisingly wide range of scenarios all with minimal cost, power consumption, and physical footprint. 
 
 ## Lab Components
 
