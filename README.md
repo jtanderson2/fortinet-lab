@@ -6,7 +6,7 @@
   - [Hardware](#hardware)
   - [Virtual Machines](#virtual-machines)
 - [Physical Topology](#physical-topology)
-- [Logical Topology & Configuration](#logical-topology-&-configuration)
+- [Logical Topology & Configuration](#logical-topology--configuration)
 
 ## Introduction
 This document outlines the home lab setup I use for learning, testing, and validating Fortinet products and network architectures. It's built with a focus on Fortinet SD-WAN, ZTNA and central management via FortiManager/FortiAnalyzer, but is flexible enough for broader security and networking scenarios.
