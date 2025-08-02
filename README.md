@@ -7,6 +7,12 @@
   - [Virtual Machines](#virtual-machines)
 - [Physical Topology](#physical-topology)
 - [Logical Topology and Configuration](#logical-topology-and-configuration)
+  - [Lab Management](#lab-management)
+  - [ESX Networking](#esx-networking)
+  - [FortiGate Internal Switch](#fortigate-internal-switch)
+  - [FortiGate VDOMs](#fortigate-vdoms)
+  - [VyOS Virtual Router](#vyos-virtual-router)
+- [Conclusion](#conclusion)
 
 ## Introduction
 This document outlines the home lab setup I use for learning, testing, and validating Fortinet products and network architectures. It's built with a focus on Fortinet SD-WAN, ZTNA and central management via FortiManager/FortiAnalyzer, but is flexible enough for broader security and networking scenarios.
