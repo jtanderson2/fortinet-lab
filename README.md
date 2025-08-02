@@ -193,6 +193,11 @@ set service ssh port '22'
 set system host-name 'rtr1'
 ```
 
+## Conclusion
+This lab setup continues to evolve, but its core design provides a flexible and low-footprint environment for experimenting with Fortinet and other technologies.
+
+
+
 
 
 
