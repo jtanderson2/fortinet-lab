@@ -5,6 +5,8 @@
 - [Lab Components](#lab-components)
   - [Hardware](#hardware)
   - [Virtual Machines](#virtual-machines)
+- [Physical Topology](#physical-topology)
+- [Logical Topology](#logical-topology)
 
 ## Introduction
 This document outlines the home lab setup I use for learning, testing, and validating Fortinet products and network architectures. It's built with a focus on Fortinet SD-WAN, ZTNA and central management via FortiManager/FortiAnalyzer, but is flexible enough for broader security and networking scenarios.
@@ -24,8 +26,8 @@ This document outlines the home lab setup I use for learning, testing, and valid
 
 - **FortiManager** - Free trial license
 - **FortiAnalyzer** - Free trial license
-- **EMS Server** - coming soon!
-- **VyOS Stream** - Virtual routing
+- **EMS Server** - Free Trial
+- **VyOS Stream** - Virtual Router
 - **Windows Server 2016** – Domain Controller + PKI
 - **Windows Server 2016** – IIS Web Server
 - **Windows 10** – Domain-joined workstation
