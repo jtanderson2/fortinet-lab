@@ -21,6 +21,8 @@ This document outlines the home lab setup I use for learning, testing, and valid
   - Intel Xeon E3-1200 (Quad Core)
   - 64 GB RAM
   - ESXi 6.7 Hypervisor
+- **My Home Laptop**
+  - Lab workstation - running all the tools you'd expect from a seasoned networking nerd!
 
 ### Virtual Machines
 
@@ -34,10 +36,6 @@ This document outlines the home lab setup I use for learning, testing, and valid
 - **Linux Mint VMs** – for traffic generation and testing
 
 > NOTE: There is also a FortiGate free trial on the ESX host. It's limited to 3 interfaces and weak ciphers, but still useful in some scenarios. The biggest challenge I've found is not being able to add it to FortiManager due to the weak ciphers.
-
-## Physical Topology
-
-![](media/fortinet-lab-physical.png)
 
 ## Physical Topology
 
