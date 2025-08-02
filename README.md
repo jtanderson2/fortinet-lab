@@ -29,7 +29,7 @@ This document outlines the home lab setup I use for learning, testing, and valid
 - **FortiManager** - Free trial license (limited to 3 Devices/VDOMs)
 - **FortiAnalyzer** - Free trial license (limited to 3 Devices/VDOMs)
 - **EMS Server** - Free Trial (limited to 3 endpoints)
-- **VyOS Stream** - Virtual Router
+- **VyOS Stream** - Free, fully functional Virtual Router
 - **Windows Server 2016** – Domain Controller + PKI
 - **Windows Server 2016** – IIS Web Server
 - **Windows 10** – Domain-joined workstation
@@ -72,29 +72,25 @@ Additional port groups are created for each lab VLAN as needed. These are config
 
 ### FortiGate Internal Switch
 
-Interface configuration for **FGT100** to support the lab management and additional lab VLANs is provided below:
+Below is the interface configuration used on **FGT100** to support both the lab management network and VLAN-tagged lab segments:
 
 ```
 config system interface
     edit "internal1"
         set vdom "root"
         set type physical
-        set snmp-index 4
     next
     edit "internal2"
         set vdom "root"
         set type physical
-        set snmp-index 5
     next
     edit "internal3"
         set vdom "root"
         set type physical
-        set snmp-index 6
     next
     edit "internal4"
         set vdom "root"
         set type physical
-        set snmp-index 7
     next
     edit "internal"
         set vdom "root"
@@ -103,7 +99,6 @@ config system interface
         set type hard-switch
         set stp enable
         set role lan
-        set snmp-index 15
 	next
     edit "LAN"
         set vdom "root"
@@ -111,7 +106,6 @@ config system interface
         set allowaccess ping
         set device-identification enable
         set role lan
-        set snmp-index 18
         set ip-managed-by-fortiipam disable
         set interface "internal"
         set vlanid 4
@@ -122,7 +116,6 @@ config system interface
         set allowaccess ping
         set device-identification enable
         set role wan
-        set snmp-index 19
         set interface "internal"
         set vlanid 6
     next
@@ -132,13 +125,72 @@ config system interface
         set allowaccess ping
         set device-identification enable
         set role wan
-        set snmp-index 20
         set interface "internal"
         set vlanid 7
     next
 end
 ```
 
+### VyOS Virtual Router
+VyOS serves as the central lab router, providing:
+- Layer 3 routing between FortiGate WAN VLANs
+- DHCP for underlay links to each FortiGate
+- NAT and default gateway to the internet via the home LAN
+
+Below is the relevant configuration for interfaces, NAT, static routing, and per-site DHCP services:
+
+```
+set interfaces ethernet eth0 address '192.168.0.118/24'
+set interfaces ethernet eth0 description 'FGT100-INET_1'
+set interfaces ethernet eth1 address '100.64.11.254/24'
+set interfaces ethernet eth1 description 'FGT100-INET_1 VLAN6'
+set interfaces ethernet eth2 address '100.64.12.254/24'
+set interfaces ethernet eth2 description 'FGT100-INET_2 VLAN7'
+set interfaces ethernet eth3 address '100.64.13.254/24'
+set interfaces ethernet eth3 description 'FGT101-INET_1 VLAN8'
+set interfaces ethernet eth4 address '100.64.14.254/24'
+set interfaces ethernet eth4 description 'FGT101-INET_2 VLAN9'
+set interfaces ethernet eth5 address '100.64.15.254/24'
+set interfaces ethernet eth5 description 'FGT102-INET_1 VLAN10'
+set interfaces ethernet eth6 address '100.64.16.254/24'
+set interfaces ethernet eth6 description 'FGT102-INET_2 VLAN11'
+set nat source rule 100 outbound-interface name 'eth0'
+set nat source rule 100 source address '0.0.0.0/0'
+set nat source rule 100 translation address 'masquerade'
+set protocols static route 0.0.0.0/0 next-hop 192.168.0.1
+set service dhcp-server shared-network-name FGT100-1 authoritative
+set service dhcp-server shared-network-name FGT100-1 subnet 100.64.11.0/24 option default-router '100.64.11.254'
+set service dhcp-server shared-network-name FGT100-1 subnet 100.64.11.0/24 range 0 start '100.64.11.1'
+set service dhcp-server shared-network-name FGT100-1 subnet 100.64.11.0/24 range 0 stop '100.64.11.1'
+set service dhcp-server shared-network-name FGT100-1 subnet 100.64.11.0/24 subnet-id '1'
+set service dhcp-server shared-network-name FGT100-2 authoritative
+set service dhcp-server shared-network-name FGT100-2 subnet 100.64.12.0/24 option default-router '100.64.12.254'
+set service dhcp-server shared-network-name FGT100-2 subnet 100.64.12.0/24 range 0 start '100.64.12.1'
+set service dhcp-server shared-network-name FGT100-2 subnet 100.64.12.0/24 range 0 stop '100.64.12.1'
+set service dhcp-server shared-network-name FGT100-2 subnet 100.64.12.0/24 subnet-id '2'
+set service dhcp-server shared-network-name FGT101-1 authoritative
+set service dhcp-server shared-network-name FGT101-1 subnet 100.64.13.0/24 option default-router '100.64.13.254'
+set service dhcp-server shared-network-name FGT101-1 subnet 100.64.13.0/24 range 0 start '100.64.13.1'
+set service dhcp-server shared-network-name FGT101-1 subnet 100.64.13.0/24 range 0 stop '100.64.13.1'
+set service dhcp-server shared-network-name FGT101-1 subnet 100.64.13.0/24 subnet-id '3'
+set service dhcp-server shared-network-name FGT101-2 authoritative
+set service dhcp-server shared-network-name FGT101-2 subnet 100.64.14.0/24 option default-router '100.64.14.254'
+set service dhcp-server shared-network-name FGT101-2 subnet 100.64.14.0/24 range 0 start '100.64.14.1'
+set service dhcp-server shared-network-name FGT101-2 subnet 100.64.14.0/24 range 0 stop '100.64.14.1'
+set service dhcp-server shared-network-name FGT101-2 subnet 100.64.14.0/24 subnet-id '4'
+set service dhcp-server shared-network-name FGT102-1 authoritative
+set service dhcp-server shared-network-name FGT102-1 subnet 100.64.15.0/24 option default-router '100.64.15.254'
+set service dhcp-server shared-network-name FGT102-1 subnet 100.64.15.0/24 range 0 start '100.64.15.1'
+set service dhcp-server shared-network-name FGT102-1 subnet 100.64.15.0/24 range 0 stop '100.64.15.1'
+set service dhcp-server shared-network-name FGT102-1 subnet 100.64.15.0/24 subnet-id '5'
+set service dhcp-server shared-network-name FGT102-2 authoritative
+set service dhcp-server shared-network-name FGT102-2 subnet 100.64.16.0/24 option default-router '100.64.16.254'
+set service dhcp-server shared-network-name FGT102-2 subnet 100.64.16.0/24 range 0 start '100.64.16.1'
+set service dhcp-server shared-network-name FGT102-2 subnet 100.64.16.0/24 range 0 stop '100.64.16.1'
+set service dhcp-server shared-network-name FGT102-2 subnet 100.64.16.0/24 subnet-id '6'
+set service ssh port '22'
+set system host-name 'rtr1'
+```
 
 
 
