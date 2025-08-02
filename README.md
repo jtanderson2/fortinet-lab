@@ -6,7 +6,7 @@
   - [Hardware](#hardware)
   - [Virtual Machines](#virtual-machines)
 - [Physical Topology](#physical-topology)
-- [Logical Topology & Configuration](#logical-topology--configuration)
+- [Logical Topology and Configuration](#logical-topology-and-configuration)
 
 ## Introduction
 This document outlines the home lab setup I use for learning, testing, and validating Fortinet products and network architectures. It's built with a focus on Fortinet SD-WAN, ZTNA and central management via FortiManager/FortiAnalyzer, but is flexible enough for broader security and networking scenarios.
@@ -22,15 +22,16 @@ The lab environment is small and compact, but does enable a surprisingly wide ra
   - Intel Xeon E3-1200 (Quad Core)
   - 64 GB RAM
   - ESXi 6.7 Hypervisor
-- **My Home Laptop**
-  - Lab workstation - running all the tools you'd expect from a seasoned networking nerd!
+- **Lab Workstation**
+  - Windows 10
+  - Running all the tools you'd expect from a seasoned networking nerd!
 
 ### Virtual Machines
 
-- **FortiManager** - Free trial license (limited to 3 Devices/VDOMs)
-- **FortiAnalyzer** - Free trial license (limited to 3 Devices/VDOMs)
-- **EMS Server** - Free Trial (limited to 3 endpoints)
-- **VyOS Stream** - Free, fully functional Virtual Router
+- **FortiManager** - [Free trial](https://docs.fortinet.com/document/fortimanager/7.6.0/vm-trial-license-guide/273638/activating-a-free-trial-of-fortimanager-vm) (limited to 3 Devices/VDOMs)
+- **FortiAnalyzer** - [Free trial](https://docs.fortinet.com/document/fortianalyzer/7.6.0/vm-trial-license-guide/273638/activating-a-free-trial-of-fortianalyzer-vm) (limited to 3 Devices/VDOMs)
+- **EMS Server** - [Free Trial](https://docs.fortinet.com/document/forticlient/7.4.0/licensing-guide/883953/free-trial-license_)  (limited to 3 endpoints)
+- **VyOS Stream** - [Free](https://vyos.net/get/stream/) Virtual Router
 - **Windows Server 2016** – Domain Controller + PKI
 - **Windows Server 2016** – IIS Web Server
 - **Windows 10** – Domain-joined workstation
@@ -51,7 +52,7 @@ Combined with virtual networking on the ESXi host, this setup offers significant
 The direct WAN-to-WAN connections between the two FortiGates are used for ad hoc scenarios, such as quickly spinning up IPsec VPNs.
 
 
-## Logical Topology & Configuration
+## Logical Topology and Configuration
 
 ![](media/fortinet-lab-logical.png)
 
