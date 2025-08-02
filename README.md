@@ -68,7 +68,76 @@ Outbound internet access for lab systems is also routed via the home LAN and ups
 
 The default **VM Network** port group is used for managing the ESXi host and extending the home management LAN to the virtual machines.
 
-Additional port groups are created for each lab VLAN as needed. These are configured as VLAN trunks and connected to the internal switch on the FGT100, allowing the FortiGate to handle VLAN tagging and routing for lab segments.
+Additional port groups are created for each lab VLAN as needed. These are configured as VLAN trunks and connected to the internal switch on the **FGT100**, allowing the FortiGate to handle VLAN tagging and routing for lab segments.
+
+### FortiGate Internal Switch
+
+Interface configuration for **FGT100** to support the lab management and additional lab VLANs is provided below:
+
+```
+config system interface
+    edit "internal1"
+        set vdom "root"
+        set type physical
+        set snmp-index 4
+    next
+    edit "internal2"
+        set vdom "root"
+        set type physical
+        set snmp-index 5
+    next
+    edit "internal3"
+        set vdom "root"
+        set type physical
+        set snmp-index 6
+    next
+    edit "internal4"
+        set vdom "root"
+        set type physical
+        set snmp-index 7
+    next
+    edit "internal"
+        set vdom "root"
+        set ip 192.168.0.113 255.255.255.0
+        set allowaccess ping https ssh fgfm fabric
+        set type hard-switch
+        set stp enable
+        set role lan
+        set snmp-index 15
+	next
+    edit "LAN"
+        set vdom "root"
+        set ip 10.4.0.1 255.255.255.0
+        set allowaccess ping
+        set device-identification enable
+        set role lan
+        set snmp-index 18
+        set ip-managed-by-fortiipam disable
+        set interface "internal"
+        set vlanid 4
+    next
+    edit "INET_1"
+        set vdom "root"
+        set mode dhcp
+        set allowaccess ping
+        set device-identification enable
+        set role wan
+        set snmp-index 19
+        set interface "internal"
+        set vlanid 6
+    next
+    edit "INET_2"
+        set vdom "root"
+        set mode dhcp
+        set allowaccess ping
+        set device-identification enable
+        set role wan
+        set snmp-index 20
+        set interface "internal"
+        set vlanid 7
+    next
+end
+```
 
 
 
