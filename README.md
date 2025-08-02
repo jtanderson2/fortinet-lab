@@ -31,6 +31,15 @@ This document outlines the home lab setup I use for learning, testing, and valid
 - **Windows 10** – Domain-joined workstation
 - **Linux Mint VMs** – for traffic generation and testing
 
+## Physical Topology
+
+![](media/fortinet-lab-physical.png)
+
+
+## Logical Topology
+
+![](media/fortinet-lab-logical.png)
+
 
 
 
