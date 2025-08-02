@@ -6,7 +6,7 @@
   - [Hardware](#hardware)
   - [Virtual Machines](#virtual-machines)
 - [Physical Topology](#physical-topology)
-- [Logical Topology](#logical-topology)
+- [Logical Topology & Configuration](#logical-topology-&-configuration)
 
 ## Introduction
 This document outlines the home lab setup I use for learning, testing, and validating Fortinet products and network architectures. It's built with a focus on Fortinet SD-WAN, ZTNA and central management via FortiManager/FortiAnalyzer, but is flexible enough for broader security and networking scenarios.
@@ -50,7 +50,7 @@ Combined with virtual networking on the ESXi host, this setup offers significant
 The direct WAN-to-WAN connections between the two FortiGates are used for ad hoc scenarios, such as quickly spinning up IPsec VPNs.
 
 
-## Logical Topology
+## Logical Topology & Configuration
 
 ![](media/fortinet-lab-logical.png)
 
