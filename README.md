@@ -37,7 +37,7 @@ The lab environment is small and compact, but does enable a surprisingly wide ra
 - **Windows 10** – Domain-joined workstation
 - **Linux Mint VMs** – for traffic generation and testing
 
-> NOTE: There is also a FortiGate free trial on the ESX host. It's limited to 3 interfaces and weak ciphers, but still useful in some scenarios. The biggest challenge I've found is not being able to add it to FortiManager due to the weak ciphers.
+> NOTE: There is also a [FortiGate free trial](https://docs.fortinet.com/document/fortigate/7.6.3/administration-guide/441460) deployed on the ESX host. It's limited to 3 interfaces and weak ciphers, but still useful in some scenarios. The biggest challenge I've found is not being able to add it to FortiManager due to the weak ciphers.
 
 ## Physical Topology
 
