@@ -1,2 +1,2 @@
-# fortinet-lab
+# Fortinet Home Lab Setup
 Coming soon....
