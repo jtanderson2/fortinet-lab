@@ -133,6 +133,11 @@ config system interface
 end
 ```
 
+### FortiGate VDOMs
+**FGT101** is running in multi-vdom mode to provide 2 virtual firewalls emulating 2 different sites.
+
+```set vdom-mode multi-vdom```
+
 ### VyOS Virtual Router
 VyOS serves as the central lab router, providing:
 - Layer 3 routing between FortiGate WAN VLANs
