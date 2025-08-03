@@ -76,7 +76,7 @@ Outbound internet access for lab systems is also routed via the home LAN and ups
 
 The default **VM Network** port group is used for managing the ESXi host and extending the home management LAN to the virtual machines.
 
-Additional port groups are created for each lab VLAN as needed. These are configured as VLAN trunks and connected to the internal switch on the **FGT100**, allowing the FortiGate to handle VLAN tagging and routing for lab segments.
+Additional port groups are created for each lab VLAN as needed. These are trunked on the connection towards the internal switch on the **FGT100**, allowing the FortiGate to handle VLAN tagging and routing for lab segments.
 
 ### FortiGate Internal Switch
 
