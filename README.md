@@ -203,6 +203,14 @@ set service dhcp-server shared-network-name FGT102-2 subnet 100.64.16.0/24 range
 set service dhcp-server shared-network-name FGT102-2 subnet 100.64.16.0/24 subnet-id '6'
 set service ssh port '22'
 set system host-name 'rtr1'
+set system syslog global facility all level 'info'
+set system syslog global facility local7 level 'debug'
+set system syslog global marker interval '60'
+set system syslog host 192.168.0.111 facility all level 'debug'
+set system syslog host 192.168.0.111 facility local6 level 'debug'
+set system syslog host 192.168.0.111 format include-timezone
+set system syslog host 192.168.0.111 port '514'
+set system syslog host 192.168.0.111 protocol 'udp'
 ```
 
 ## Conclusion
